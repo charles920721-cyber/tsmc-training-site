@@ -1,0 +1,10 @@
+# OS
+Thumbs.db
+Desktop.ini
+
+# Editor
+.vscode/
+.cursor/
+
+# Deploy temp
+site.zip

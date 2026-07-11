@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>半導體知識屋｜台積電訓練網站</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Outfit:wght@500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <div class="bg-atmosphere" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <a class="brand" href="index.html">TSMC Lab</a>
+    <nav class="nav">
+      <a href="index.html">首頁</a>
+      <a href="knowledge.html" class="active">半導體知識屋</a>
+      <a href="quiz.html">隨機測驗</a>
+    </nav>
+  </header>
+
+  <main class="page">
+    <div class="page-header">
+      <p class="eyebrow">Knowledge House</p>
+      <h1>半導體知識屋</h1>
+      <p>依主題整理講義與光刻簡報內容，可先閱讀再進入隨機測驗驗收。</p>
+    </div>
+
+    <div class="knowledge-layout">
+      <aside class="toc" id="toc"></aside>
+      <div class="knowledge-content" id="knowledge-content"></div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <p>教材來源：半導體知識屋講義 · 光刻技術簡報</p>
+  </footer>
+
+  <script src="js/knowledge-data.js"></script>
+  <script src="js/knowledge.js"></script>
+</body>
+</html>
