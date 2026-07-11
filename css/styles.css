@@ -1,15 +1,15 @@
 :root {
-  --bg: #061510;
-  --bg-elevated: #0c241c;
-  --surface: #123028;
-  --text: #e8f2ed;
-  --muted: #9bb5a8;
-  --accent: #1faa6c;
-  --accent-soft: rgba(31, 170, 108, 0.16);
-  --line: rgba(232, 242, 237, 0.12);
+  --bg: #0a0e1a;
+  --bg-elevated: #121831;
+  --surface: #161d3a;
+  --text: #e9ecf7;
+  --muted: #9aa3c4;
+  --accent: #6c5ce7;
+  --accent-soft: rgba(108, 92, 231, 0.16);
+  --line: rgba(233, 236, 247, 0.12);
   --warn: #e8b84a;
   --danger: #e07070;
-  --ok: #3dcf8a;
+  --ok: #2dd4a8;
   --font-display: "Outfit", "Noto Sans TC", sans-serif;
   --font-body: "Noto Sans TC", sans-serif;
   --radius: 14px;
@@ -45,9 +45,9 @@ a {
   inset: 0;
   z-index: -1;
   background:
-    radial-gradient(ellipse 80% 50% at 15% -10%, rgba(31, 170, 108, 0.28), transparent 55%),
-    radial-gradient(ellipse 60% 40% at 90% 10%, rgba(20, 90, 70, 0.35), transparent 50%),
-    linear-gradient(165deg, #071a14 0%, #0a1f18 40%, #061510 100%);
+    radial-gradient(ellipse 80% 50% at 15% -10%, rgba(108, 92, 231, 0.32), transparent 55%),
+    radial-gradient(ellipse 60% 40% at 90% 10%, rgba(45, 212, 168, 0.20), transparent 50%),
+    linear-gradient(165deg, #0d1430 0%, #0b1024 40%, #0a0e1a 100%);
 }
 
 .bg-atmosphere::after {
@@ -55,8 +55,8 @@ a {
   position: absolute;
   inset: 0;
   background-image:
-    linear-gradient(rgba(232, 242, 237, 0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(232, 242, 237, 0.03) 1px, transparent 1px);
+    linear-gradient(rgba(233, 236, 247, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(233, 236, 247, 0.03) 1px, transparent 1px);
   background-size: 64px 64px;
   mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.55), transparent 85%);
   pointer-events: none;
@@ -117,7 +117,7 @@ a {
   font-weight: 700;
   letter-spacing: -0.03em;
   line-height: 0.95;
-  background: linear-gradient(120deg, #dff7ea 10%, #1faa6c 55%, #8fd9b4 100%);
+  background: linear-gradient(120deg, #e7ecff 10%, #6c5ce7 50%, #4fd1c5 100%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -164,11 +164,11 @@ a {
 
 .btn-primary {
   background: var(--accent);
-  color: #04140e;
+  color: #ffffff;
 }
 
 .btn-primary:hover {
-  background: #2bc47f;
+  background: #7d6ef0;
 }
 
 .btn-ghost {
@@ -178,7 +178,7 @@ a {
 }
 
 .btn-ghost:hover {
-  border-color: rgba(31, 170, 108, 0.55);
+  border-color: rgba(108, 92, 231, 0.55);
   background: var(--accent-soft);
 }
 
@@ -205,7 +205,7 @@ a {
 }
 
 .feature:hover {
-  background: rgba(31, 170, 108, 0.06);
+  background: rgba(108, 92, 231, 0.06);
 }
 
 .feature-label {
@@ -329,12 +329,12 @@ a {
 .article h3 {
   margin: 0 0 0.7rem;
   font-size: 1.05rem;
-  color: #c8ebd9;
+  color: #cdd4f5;
 }
 
 .article p,
 .article li {
-  color: #c5d9cf;
+  color: #c3cbe6;
 }
 
 .article ul,
@@ -392,13 +392,13 @@ a {
 }
 
 .chip:hover {
-  border-color: rgba(31, 170, 108, 0.5);
+  border-color: rgba(108, 92, 231, 0.5);
 }
 
 .chip.active {
   background: var(--accent);
   border-color: var(--accent);
-  color: #04140e;
+  color: #ffffff;
   font-weight: 600;
 }
 
@@ -415,8 +415,8 @@ a {
   margin-bottom: 1.5rem;
   padding: 1.35rem 1.4rem;
   border-radius: var(--radius);
-  background: linear-gradient(135deg, rgba(31, 170, 108, 0.22), rgba(12, 36, 28, 0.9));
-  border: 1px solid rgba(31, 170, 108, 0.4);
+  background: linear-gradient(135deg, rgba(108, 92, 231, 0.26), rgba(18, 24, 49, 0.9));
+  border: 1px solid rgba(108, 92, 231, 0.4);
   scroll-margin-top: 5.5rem;
 }
 
@@ -449,7 +449,7 @@ a {
 }
 
 .question-card.correct {
-  border-color: rgba(61, 207, 138, 0.45);
+  border-color: rgba(45, 212, 168, 0.5);
 }
 
 .question-card.wrong {
@@ -511,7 +511,7 @@ a {
 }
 
 .short-answer:focus {
-  outline: 2px solid rgba(31, 170, 108, 0.45);
+  outline: 2px solid rgba(108, 92, 231, 0.45);
   outline-offset: 1px;
 }
 
@@ -540,7 +540,7 @@ a {
 
 .answer-reveal .correct-answer {
   margin: 0;
-  color: #d7f5e6;
+  color: #d7e0ff;
 }
 
 .quiz-actions {
