@@ -1,9 +1,9 @@
 (function () {
   const toc = document.getElementById("toc");
   const content = document.getElementById("knowledge-content");
-  if (!toc || !content || !window.KNOWLEDGE_CHAPTERS) return;
-
-  const chapters = KNOWLEDGE_CHAPTERS;
+  const chapters =
+    typeof KNOWLEDGE_CHAPTERS !== "undefined" ? KNOWLEDGE_CHAPTERS : null;
+  if (!toc || !content || !chapters) return;
 
   toc.innerHTML = chapters
     .map((ch) => `<a href="#${ch.id}">${ch.title}</a>`)
