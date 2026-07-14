@@ -165,4 +165,5 @@ const I18N = {
   }
 };
 
+window.I18N = I18N;
 document.addEventListener("DOMContentLoaded", () => I18N.init());

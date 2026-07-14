@@ -6,7 +6,11 @@
   if (!toc || !content || !source) return;
 
   function L(value) {
-    return window.I18N ? I18N.L(value) : value;
+    if (typeof I18N !== "undefined" && I18N.L) return I18N.L(value);
+    if (value && typeof value === "object" && !Array.isArray(value) && ("zh" in value || "en" in value)) {
+      return value.zh ?? value.en ?? "";
+    }
+    return value;
   }
 
   function render() {

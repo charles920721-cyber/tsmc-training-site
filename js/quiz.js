@@ -18,11 +18,16 @@
   let lastScore = null;
 
   function t(key, vars) {
-    return window.I18N ? I18N.t(key, vars) : key;
+    if (typeof I18N !== "undefined" && I18N.t) return I18N.t(key, vars);
+    return key;
   }
 
   function L(value) {
-    return window.I18N ? I18N.L(value) : value;
+    if (typeof I18N !== "undefined" && I18N.L) return I18N.L(value);
+    if (value && typeof value === "object" && !Array.isArray(value) && ("zh" in value || "en" in value)) {
+      return value.zh ?? value.en ?? "";
+    }
+    return value;
   }
 
   function bindChips(container, attr, onPick) {
@@ -220,7 +225,7 @@
   });
 
   window.addEventListener("langchange", () => {
-    if (window.I18N) I18N.applyUI();
+    if (typeof I18N !== "undefined" && I18N.applyUI) I18N.applyUI();
     if (panel.classList.contains("visible") && currentQuestions.length) {
       renderQuestions();
     }
