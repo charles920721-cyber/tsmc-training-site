@@ -1,46 +1,57 @@
 (function () {
   const toc = document.getElementById("toc");
   const content = document.getElementById("knowledge-content");
-  const chapters =
+  const source =
     typeof KNOWLEDGE_CHAPTERS !== "undefined" ? KNOWLEDGE_CHAPTERS : null;
-  if (!toc || !content || !chapters) return;
+  if (!toc || !content || !source) return;
 
-  toc.innerHTML = chapters
-    .map((ch) => `<a href="#${ch.id}">${ch.title}</a>`)
-    .join("");
+  function L(value) {
+    return window.I18N ? I18N.L(value) : value;
+  }
 
-  content.innerHTML = chapters
-    .map(
-      (ch) => `
+  function render() {
+    const chapters = source;
+    toc.innerHTML = chapters
+      .map((ch) => `<a href="#${ch.id}">${L(ch.title)}</a>`)
+      .join("");
+
+    content.innerHTML = chapters
+      .map(
+        (ch) => `
       <section class="chapter" id="${ch.id}">
-        <h2 class="chapter-title">${ch.title}</h2>
+        <h2 class="chapter-title">${L(ch.title)}</h2>
         ${ch.articles
           .map(
             (a) => `
           <article class="article">
-            <h3>${a.title}</h3>
-            ${a.html}
+            <h3>${L(a.title)}</h3>
+            ${L(a.html)}
           </article>`
           )
           .join("")}
       </section>`
-    )
-    .join("");
+      )
+      .join("");
 
-  const links = [...toc.querySelectorAll("a")];
-  const sections = chapters.map((ch) => document.getElementById(ch.id));
+    const links = [...toc.querySelectorAll("a")];
+    const sections = chapters.map((ch) => document.getElementById(ch.id));
 
-  function setActive() {
-    let current = sections[0]?.id;
-    for (const section of sections) {
-      if (!section) continue;
-      if (section.getBoundingClientRect().top <= 120) current = section.id;
+    function setActive() {
+      let current = sections[0]?.id;
+      for (const section of sections) {
+        if (!section) continue;
+        if (section.getBoundingClientRect().top <= 120) current = section.id;
+      }
+      links.forEach((link) => {
+        link.classList.toggle("active", link.getAttribute("href") === `#${current}`);
+      });
     }
-    links.forEach((link) => {
-      link.classList.toggle("active", link.getAttribute("href") === `#${current}`);
-    });
+
+    window.removeEventListener("scroll", setActive);
+    window.addEventListener("scroll", setActive, { passive: true });
+    setActive();
   }
 
-  window.addEventListener("scroll", setActive, { passive: true });
-  setActive();
+  render();
+  window.addEventListener("langchange", render);
 })();

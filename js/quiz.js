@@ -15,6 +15,15 @@
   let selectedCount = 5;
   let currentQuestions = [];
   let submitted = false;
+  let lastScore = null;
+
+  function t(key, vars) {
+    return window.I18N ? I18N.t(key, vars) : key;
+  }
+
+  function L(value) {
+    return window.I18N ? I18N.L(value) : value;
+  }
 
   function bindChips(container, attr, onPick) {
     container.addEventListener("click", (e) => {
@@ -43,7 +52,7 @@
   }
 
   function pickQuestions(type, count) {
-    const bank = QUIZ_BANK[type] || [];
+    const bank = (QUIZ_BANK[type] || []);
     if (!bank.length) return [];
     const pool = shuffle(bank);
     const result = [];
@@ -53,36 +62,60 @@
     return result;
   }
 
+  function getChoices(item) {
+    return L(item.choices);
+  }
+
   function renderQuestions() {
+    const answers = {};
+    if (list.children.length) {
+      currentQuestions.forEach((_, idx) => {
+        if (selectedType === "mc") {
+          const checked = list.querySelector(`input[name="q-${idx}"]:checked`);
+          if (checked) answers[idx] = checked.value;
+        } else {
+          const ta = document.getElementById(`sa-${idx}`);
+          if (ta) answers[idx] = ta.value;
+        }
+      });
+    }
+
     list.innerHTML = currentQuestions
       .map((item, idx) => {
         if (selectedType === "mc") {
-          const choices = item.choices
+          const choices = getChoices(item)
             .map(
               (c, i) => `
               <label class="choice">
-                <input type="radio" name="q-${idx}" value="${i}" />
+                <input type="radio" name="q-${idx}" value="${i}" ${answers[idx] === String(i) ? "checked" : ""} />
                 <span>${String.fromCharCode(65 + i)}. ${c}</span>
               </label>`
             )
             .join("");
           return `
             <article class="question-card" data-idx="${idx}">
-              <div class="q-meta"><span>第 ${idx + 1} 題</span><span>選擇題</span></div>
-              <p class="q-text">${item.q}</p>
+              <div class="q-meta"><span>${t("quiz.qNum", { n: idx + 1 })}</span><span>${t("quiz.qMetaMc")}</span></div>
+              <p class="q-text">${L(item.q)}</p>
               <div class="choices">${choices}</div>
               <div class="answer-reveal" id="reveal-${idx}"></div>
             </article>`;
         }
         return `
           <article class="question-card" data-idx="${idx}">
-            <div class="q-meta"><span>第 ${idx + 1} 題</span><span>簡答題</span></div>
-            <p class="q-text">${item.q}</p>
-            <textarea class="short-answer" id="sa-${idx}" placeholder="請輸入你的答案…"></textarea>
+            <div class="q-meta"><span>${t("quiz.qNum", { n: idx + 1 })}</span><span>${t("quiz.qMetaSa")}</span></div>
+            <p class="q-text">${L(item.q)}</p>
+            <textarea class="short-answer" id="sa-${idx}" placeholder="${t("quiz.placeholder")}">${answers[idx] || ""}</textarea>
             <div class="answer-reveal" id="reveal-${idx}"></div>
           </article>`;
       })
       .join("");
+
+    if (submitted) {
+      gradeAll(false);
+      list.querySelectorAll("input, textarea").forEach((el) => {
+        el.disabled = true;
+      });
+    }
   }
 
   function normalize(text) {
@@ -92,38 +125,41 @@
       .replace(/[，。、；：！？,.!?;:'"“”‘’（）()【】\[\]《》<>]/g, "");
   }
 
-  function gradeShort(userText, keywords) {
+  function gradeShort(userText, item) {
     const n = normalize(userText);
     if (!n) return false;
-    const hit = (keywords || []).filter((k) => n.includes(normalize(k))).length;
-    const need = Math.max(1, Math.ceil((keywords || []).length * 0.35));
+    const keywords = L(item.keywords) || item.keywords || [];
+    const hit = keywords.filter((k) => n.includes(normalize(k))).length;
+    const need = Math.max(1, Math.ceil(keywords.length * 0.35));
     return hit >= need;
   }
 
-  function gradeAll() {
+  function gradeAll(updateScore) {
     let correct = 0;
     currentQuestions.forEach((item, idx) => {
       const card = list.querySelector(`.question-card[data-idx="${idx}"]`);
       const reveal = document.getElementById(`reveal-${idx}`);
       let ok = false;
       let your = "";
+      const choices = getChoices(item);
 
       if (selectedType === "mc") {
         const checked = list.querySelector(`input[name="q-${idx}"]:checked`);
-        your = checked ? item.choices[Number(checked.value)] : "（未作答）";
+        your = checked ? choices[Number(checked.value)] : t("quiz.unanswered");
         ok = checked && Number(checked.value) === item.answer;
+        const explain = L(item.explain);
         reveal.innerHTML = `
-          <span class="label">本題正確答案</span>
-          <p class="your-answer">你的答案：${your}</p>
-          <p class="correct-answer">${String.fromCharCode(65 + item.answer)}. ${item.choices[item.answer]}${item.explain ? `（${item.explain}）` : ""}</p>`;
+          <span class="label">${t("quiz.correctLabel")}</span>
+          <p class="your-answer">${t("quiz.yourAnswer", { answer: your })}</p>
+          <p class="correct-answer">${String.fromCharCode(65 + item.answer)}. ${choices[item.answer]}${explain ? `（${explain}）` : ""}</p>`;
       } else {
         const ta = document.getElementById(`sa-${idx}`);
-        your = (ta && ta.value.trim()) || "（未作答）";
-        ok = gradeShort(your === "（未作答）" ? "" : your, item.keywords);
+        your = (ta && ta.value.trim()) || t("quiz.unanswered");
+        ok = gradeShort(your === t("quiz.unanswered") ? "" : your, item);
         reveal.innerHTML = `
-          <span class="label">本題參考答案</span>
-          <p class="your-answer">你的答案：${your}</p>
-          <p class="correct-answer">${item.answer}</p>`;
+          <span class="label">${t("quiz.refLabel")}</span>
+          <p class="your-answer">${t("quiz.yourAnswer", { answer: your })}</p>
+          <p class="correct-answer">${L(item.answer)}</p>`;
       }
 
       reveal.classList.add("visible");
@@ -131,11 +167,23 @@
       card.classList.add(ok ? "correct" : "wrong");
       if (ok) correct += 1;
     });
+
+    if (updateScore !== false) {
+      const total = currentQuestions.length;
+      const percent = total ? Math.round((correct / total) * 100) : 0;
+      lastScore = { correct, total, percent };
+      scoreTitle.textContent = t("quiz.scoreResult", lastScore);
+      scoreDetail.textContent = selectedType === "mc" ? t("quiz.scoreMc") : t("quiz.scoreSa");
+    } else if (lastScore) {
+      scoreTitle.textContent = t("quiz.scoreResult", lastScore);
+      scoreDetail.textContent = selectedType === "mc" ? t("quiz.scoreMc") : t("quiz.scoreSa");
+    }
     return correct;
   }
 
   startBtn.addEventListener("click", () => {
     submitted = false;
+    lastScore = null;
     currentQuestions = pickQuestions(selectedType, selectedCount);
     setup.classList.add("hidden");
     panel.classList.add("visible");
@@ -149,28 +197,19 @@
   submitBtn.addEventListener("click", () => {
     if (submitted) return;
     submitted = true;
-    const correct = gradeAll();
-    const total = currentQuestions.length;
-    const percent = total ? Math.round((correct / total) * 100) : 0;
-    scoreTitle.textContent = `成績：${correct} / ${total}（${percent}%）`;
-    scoreDetail.textContent =
-      selectedType === "mc"
-        ? "選擇題以標準答案計分；每題下方已公布正確答案。"
-        : "簡答題依關鍵概念自動評分（含意接近即可）；每題下方已公布參考答案。";
+    gradeAll(true);
     scoreBanner.classList.add("visible");
     submitBtn.classList.add("hidden");
-
-    // 鎖住作答
     list.querySelectorAll("input, textarea").forEach((el) => {
       el.disabled = true;
     });
-
     scoreBanner.scrollIntoView({ behavior: "smooth", block: "start" });
     window.scrollTo({ top: 0, behavior: "smooth" });
   });
 
   retryBtn.addEventListener("click", () => {
     submitted = false;
+    lastScore = null;
     panel.classList.remove("visible");
     setup.classList.remove("hidden");
     scoreBanner.classList.remove("visible");
@@ -178,5 +217,12 @@
     submitBtn.classList.remove("hidden");
     submitBtn.disabled = false;
     window.scrollTo({ top: 0, behavior: "smooth" });
+  });
+
+  window.addEventListener("langchange", () => {
+    if (window.I18N) I18N.applyUI();
+    if (panel.classList.contains("visible") && currentQuestions.length) {
+      renderQuestions();
+    }
   });
 })();

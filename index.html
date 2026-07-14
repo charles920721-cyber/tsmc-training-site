@@ -9,28 +9,29 @@
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Outfit:wght@500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/styles.css" />
 </head>
-<body>
+<body data-title-key="home.title">
   <div class="bg-atmosphere" aria-hidden="true"></div>
 
   <header class="site-header">
     <a class="brand" href="index.html">TSMC Lab</a>
     <nav class="nav">
-      <a href="index.html" class="active">首頁</a>
-      <a href="knowledge.html">半導體知識屋</a>
-      <a href="quiz.html">隨機測驗</a>
+      <a href="index.html" class="active" data-i18n="nav.home">首頁</a>
+      <a href="knowledge.html" data-i18n="nav.knowledge">半導體知識屋</a>
+      <a href="quiz.html" data-i18n="nav.quiz">隨機測驗</a>
     </nav>
   </header>
 
   <main class="hero">
     <p class="brand-mark">TSMC Lab</p>
-    <h1>台積電訓練網站</h1>
-    <p class="hero-lead">從半導體基礎到光刻製程，系統複習教材並以隨機測驗驗證理解。</p>
+    <h1 data-i18n="home.h1">台積電訓練網站</h1>
+    <p class="hero-lead" data-i18n="home.lead">從半導體基礎到光刻製程，系統複習教材並以隨機測驗驗證理解。</p>
     <div class="hero-actions">
-      <a class="btn btn-primary" href="knowledge.html">進入知識屋</a>
-      <a class="btn btn-ghost" href="quiz.html">開始測驗</a>
+      <a class="btn btn-primary" href="knowledge.html" data-i18n="home.ctaKnowledge">進入知識屋</a>
+      <a class="btn btn-ghost" href="quiz.html" data-i18n="home.ctaQuiz">開始測驗</a>
     </div>
   </main>
 
   <footer class="site-footer"></footer>
+  <script src="js/i18n.js"></script>
 </body>
 </html>

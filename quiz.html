@@ -9,65 +9,66 @@
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Outfit:wght@500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/styles.css" />
 </head>
-<body>
+<body data-title-key="quiz.title">
   <div class="bg-atmosphere" aria-hidden="true"></div>
 
   <header class="site-header">
     <a class="brand" href="index.html">TSMC Lab</a>
     <nav class="nav">
-      <a href="index.html">首頁</a>
-      <a href="knowledge.html">半導體知識屋</a>
-      <a href="quiz.html" class="active">隨機測驗</a>
+      <a href="index.html" data-i18n="nav.home">首頁</a>
+      <a href="knowledge.html" data-i18n="nav.knowledge">半導體知識屋</a>
+      <a href="quiz.html" class="active" data-i18n="nav.quiz">隨機測驗</a>
     </nav>
   </header>
 
   <main class="page">
     <div class="page-header">
       <p class="eyebrow">Random Quiz</p>
-      <h1>隨機測驗</h1>
-      <p>選擇題型與題數後開始作答；按下「作答完畢」會回到頁面上方公布成績，並在每題下方顯示正確答案。</p>
+      <h1 data-i18n="quiz.h1">隨機測驗</h1>
+      <p data-i18n="quiz.lead">選擇題型與題數後開始作答；按下「作答完畢」會回到頁面上方公布成績，並在每題下方顯示正確答案。</p>
     </div>
 
     <section class="quiz-setup" id="quiz-setup">
       <div class="setup-group">
-        <h2>題型</h2>
+        <h2 data-i18n="quiz.typeLabel">題型</h2>
         <div class="option-row" id="type-options">
-          <button type="button" class="chip active" data-type="mc">選擇題</button>
-          <button type="button" class="chip" data-type="sa">簡答題</button>
+          <button type="button" class="chip active" data-type="mc" data-i18n="quiz.mc">選擇題</button>
+          <button type="button" class="chip" data-type="sa" data-i18n="quiz.sa">簡答題</button>
         </div>
       </div>
       <div class="setup-group">
-        <h2>題數</h2>
+        <h2 data-i18n="quiz.countLabel">題數</h2>
         <div class="option-row" id="count-options">
-          <button type="button" class="chip active" data-count="5">5 題</button>
-          <button type="button" class="chip" data-count="10">10 題</button>
-          <button type="button" class="chip" data-count="25">25 題</button>
-          <button type="button" class="chip" data-count="40">40 題</button>
-          <button type="button" class="chip" data-count="50">50 題</button>
+          <button type="button" class="chip active" data-count="5" data-i18n-count="5">5 題</button>
+          <button type="button" class="chip" data-count="10" data-i18n-count="10">10 題</button>
+          <button type="button" class="chip" data-count="25" data-i18n-count="25">25 題</button>
+          <button type="button" class="chip" data-count="40" data-i18n-count="40">40 題</button>
+          <button type="button" class="chip" data-count="50" data-i18n-count="50">50 題</button>
         </div>
       </div>
-      <button type="button" class="btn btn-primary" id="start-quiz">開始測驗</button>
+      <button type="button" class="btn btn-primary" id="start-quiz" data-i18n="quiz.start">開始測驗</button>
     </section>
 
     <section class="quiz-panel" id="quiz-panel">
       <div class="score-banner" id="score-banner">
-        <h2 id="score-title">成績</h2>
+        <h2 id="score-title" data-i18n="quiz.score">成績</h2>
         <p id="score-detail"></p>
       </div>
 
       <div class="question-list" id="question-list"></div>
 
       <div class="quiz-actions">
-        <button type="button" class="btn btn-primary btn-block" id="submit-quiz">作答完畢</button>
-        <button type="button" class="btn btn-ghost" id="retry-quiz">重新設定測驗</button>
+        <button type="button" class="btn btn-primary btn-block" id="submit-quiz" data-i18n="quiz.submit">作答完畢</button>
+        <button type="button" class="btn btn-ghost" id="retry-quiz" data-i18n="quiz.retry">重新設定測驗</button>
       </div>
     </section>
   </main>
 
   <footer class="site-footer">
-    <p>題目依半導體知識屋與光刻技術教材隨機抽題</p>
+    <p data-i18n="quiz.footer">題目依半導體知識屋與光刻技術教材隨機抽題</p>
   </footer>
 
+  <script src="js/i18n.js"></script>
   <script src="js/questions.js"></script>
   <script src="js/quiz.js"></script>
 </body>
