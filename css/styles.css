@@ -453,6 +453,123 @@ a {
   font-size: 0.9rem;
 }
 
+.role-hint {
+  margin: 0 0 0.9rem;
+  color: var(--muted);
+  font-size: 0.92rem;
+}
+
+.role-list {
+  display: grid;
+  gap: 0.55rem;
+  margin: 0.4rem 0 1rem;
+}
+
+.role-accordion {
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: rgba(10, 14, 26, 0.45);
+  overflow: hidden;
+}
+
+.role-accordion[open] {
+  border-color: rgba(108, 92, 231, 0.45);
+  background: rgba(108, 92, 231, 0.08);
+}
+
+.role-accordion summary {
+  list-style: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.85rem 1rem;
+  user-select: none;
+}
+
+.role-accordion summary::-webkit-details-marker {
+  display: none;
+}
+
+.role-summary-main {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.35rem 0.7rem;
+  min-width: 0;
+}
+
+.role-track {
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+.role-title {
+  font-weight: 600;
+  color: var(--text);
+}
+
+.role-code {
+  font-family: var(--font-display);
+  font-size: 0.82rem;
+  color: var(--accent);
+  letter-spacing: 0.02em;
+}
+
+.role-chevron {
+  flex: 0 0 auto;
+  width: 0.55rem;
+  height: 0.55rem;
+  border-right: 2px solid var(--muted);
+  border-bottom: 2px solid var(--muted);
+  transform: rotate(45deg);
+  transition: transform 0.2s ease;
+  margin-right: 0.2rem;
+}
+
+.role-accordion[open] .role-chevron {
+  transform: rotate(-135deg);
+  margin-top: 0.25rem;
+}
+
+.role-body {
+  padding: 0 1rem 1rem;
+  border-top: 1px solid var(--line);
+}
+
+.role-blurb {
+  margin: 0.85rem 0 0.35rem;
+  color: #c3cbe6;
+}
+
+.role-sources-label {
+  margin: 0.85rem 0 0.25rem;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+.role-sources {
+  margin: 0;
+  padding-left: 1.1rem;
+}
+
+.role-sources a {
+  color: #9eb0ff;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.role-sources a:hover {
+  color: #c5d0ff;
+}
+
+@media (max-width: 640px) {
+  .role-accordion summary {
+    align-items: flex-start;
+  }
+}
+
 /* Quiz setup */
 .quiz-setup {
   display: grid;

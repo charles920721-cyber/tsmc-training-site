@@ -390,125 +390,30 @@ const ABOUT_CHAPTERS = [
       },
       {
         title: { zh: "工程師職類（Engineer）", en: "Engineer Job Families" },
-        html: {
-          zh: `
-          <div class="table-wrap">
-            <table class="data-table">
-              <thead><tr><th>方向</th><th>中文職稱</th><th>常見代號</th></tr></thead>
-              <tbody>
-                <tr><td>製程</td><td>製程工程師</td><td>PE</td></tr>
-                <tr><td>設備</td><td>設備工程師</td><td>EE</td></tr>
-                <tr><td>整合</td><td>製程整合工程師</td><td>PIE</td></tr>
-                <tr><td>良率</td><td>良率精進／良率提升工程師</td><td>YE / YEE</td></tr>
-                <tr><td>製造</td><td>智慧製造工程師</td><td>MFG</td></tr>
-                <tr><td>研發</td><td>研究與發展工程師；R&D Module／Device／Integration</td><td>RD</td></tr>
-                <tr><td>設計支援</td><td>IC 設計工程師</td><td>Design / DTCO 等</td></tr>
-                <tr><td>品質</td><td>品質與可靠性工程師</td><td>QR（MQR／TQR）</td></tr>
-                <tr><td>測試</td><td>測試工程師</td><td>TE</td></tr>
-                <tr><td>廠務</td><td>廠務工程師</td><td>FME</td></tr>
-                <tr><td>工安環保</td><td>工安環保工程師</td><td>ISEP / EHS</td></tr>
-                <tr><td>資訊</td><td>資訊技術工程師</td><td>IT</td></tr>
-                <tr><td>封裝</td><td>先進封裝／3DIC 相關工程師</td><td>AP／3DIC PE／EE 等</td></tr>
-                <tr><td>其他</td><td>供應鏈、企業規劃、產品工程等</td><td>SCM／Planning／Product Eng.</td></tr>
-              </tbody>
-            </table>
-          </div>
-          `,
-          en: `
-          <div class="table-wrap">
-            <table class="data-table">
-              <thead><tr><th>Track</th><th>Title</th><th>Common code</th></tr></thead>
-              <tbody>
-                <tr><td>Process</td><td>Process Engineer</td><td>PE</td></tr>
-                <tr><td>Equipment</td><td>Equipment Engineer</td><td>EE</td></tr>
-                <tr><td>Integration</td><td>Process Integration Engineer</td><td>PIE</td></tr>
-                <tr><td>Yield</td><td>Yield Enhancement Engineer</td><td>YE / YEE</td></tr>
-                <tr><td>Manufacturing</td><td>Smart Manufacturing Engineer</td><td>MFG</td></tr>
-                <tr><td>R&D</td><td>R&D Module / Device / Integration</td><td>RD</td></tr>
-                <tr><td>Design support</td><td>IC Design Engineer</td><td>Design / DTCO</td></tr>
-                <tr><td>Quality</td><td>Quality & Reliability Engineer</td><td>QR (MQR/TQR)</td></tr>
-                <tr><td>Test</td><td>Test Engineer</td><td>TE</td></tr>
-                <tr><td>Facility</td><td>Facility Engineer</td><td>FME</td></tr>
-                <tr><td>EHS</td><td>Industrial Safety & Environmental Protection</td><td>ISEP / EHS</td></tr>
-                <tr><td>IT</td><td>IT Engineer</td><td>IT</td></tr>
-                <tr><td>Packaging</td><td>Advanced Packaging / 3DIC</td><td>AP / 3DIC PE/EE</td></tr>
-                <tr><td>Other</td><td>Supply chain, planning, product eng.</td><td>SCM / Planning / PE</td></tr>
-              </tbody>
-            </table>
-          </div>
-          `
-        }
+        type: "roleList",
+        hint: {
+          zh: "點擊任一職類可展開工作內容介紹。內容整理自台積電官方職涯與徵才頁。",
+          en: "Click a role to expand its job overview. Content is compiled from official TSMC Careers pages."
+        },
+        roleKey: "engineers"
       },
       {
         title: { zh: "副／助理工程師與技術員", en: "Associate Engineers & Technicians" },
-        html: {
-          zh: `
-          <p class="subhead">副工程師／助理工程師</p>
-          <div class="table-wrap">
-            <table class="data-table">
-              <thead><tr><th>方向</th><th>中文職稱</th><th>代號</th><th>說明</th></tr></thead>
-              <tbody>
-                <tr><td>設備／模組（主力）</td><td>模組副工程師</td><td>MAE</td><td>機台 PM、值班、零件、Alarm 排除</td></tr>
-                <tr><td>設備／模組</td><td>儲備模組副工程師</td><td>Reserve／Trainee MAE</td><td>訓練後轉正式 MAE</td></tr>
-                <tr><td>製程</td><td>製程副工程師／儲備製程副工程師</td><td>Process Associate Engineer</td><td>協助製程維持、與 EE 排除、指導技術員</td></tr>
-                <tr><td>先進封裝</td><td>先進封裝模組副工程師</td><td>Packaging MAE</td><td>封裝產線機台保養與線上排除</td></tr>
-                <tr><td>研發製程中心</td><td>RDPC／3DIC 儲備模組副工程師</td><td>RDPC MAE</td><td>研發／3DIC 端設備實務</td></tr>
-                <tr><td>廠務</td><td>廠務助理工程師</td><td>Facility Assistant Engineer</td><td>配管佈線、施工、安全與品質管理</td></tr>
-                <tr><td>行政對應</td><td>副管理師</td><td>Associate Admin</td><td>與副工程師同級、偏管理／幕僚</td></tr>
-              </tbody>
-            </table>
-          </div>
-          <p class="subhead">技術員／作業員</p>
-          <div class="table-wrap">
-            <table class="data-table">
-              <thead><tr><th>方向</th><th>常見職稱</th><th>工作重點</th></tr></thead>
-              <tbody>
-                <tr><td>製造（最大宗）</td><td>製造部技術員（12 吋廠）</td><td>派工系統監控、產線異常協調、FOUP／物料作業</td></tr>
-                <tr><td>先進封裝製造</td><td>先進封裝製造部技術員</td><td>封裝產線操作與監控</td></tr>
-                <tr><td>工程支援</td><td>工程部技術員</td><td>協助工程單位現場／量測／支援</td></tr>
-                <tr><td>製程模組技術員</td><td>Process Technician</td><td>LIT／Etch／CVD／PVD／DIF／EPI／CMP／Metrology／Yield</td></tr>
-                <tr><td>物流運籌</td><td>物流運籌系統部技術員</td><td>物料／AMHS 等物流監控</td></tr>
-                <tr><td>品質可靠度</td><td>可靠度測試／量測／SPC／Q&R Lab 技術員</td><td>測試、量測、SPC、實驗支援</td></tr>
-                <tr><td>數據／系統</td><td>AI／大數據分析、系統技術員（如 ADC）</td><td>系統與資料相關技術支援</td></tr>
-                <tr><td>廠務相關</td><td>廠務技術員</td><td>廠務系統操作／維護協助</td></tr>
-              </tbody>
-            </table>
-          </div>
-          `,
-          en: `
-          <p class="subhead">Associate / Assistant Engineers</p>
-          <div class="table-wrap">
-            <table class="data-table">
-              <thead><tr><th>Track</th><th>Title</th><th>Code</th><th>Focus</th></tr></thead>
-              <tbody>
-                <tr><td>Equipment / Module (main)</td><td>Module Associate Engineer</td><td>MAE</td><td>PM, shifts, parts, alarm troubleshooting</td></tr>
-                <tr><td>Equipment / Module</td><td>Reserve / Trainee MAE</td><td>—</td><td>Training then formal MAE</td></tr>
-                <tr><td>Process</td><td>Process Associate Engineer</td><td>—</td><td>Process sustain, work with EE, coach technicians</td></tr>
-                <tr><td>Advanced packaging</td><td>Packaging MAE</td><td>—</td><td>Tool PM and line troubleshooting</td></tr>
-                <tr><td>RDPC / 3DIC</td><td>RDPC MAE</td><td>—</td><td>R&D / 3DIC equipment practice</td></tr>
-                <tr><td>Facility</td><td>Facility Assistant Engineer</td><td>—</td><td>Piping, construction, safety, quality</td></tr>
-                <tr><td>Admin parallel</td><td>Associate Admin</td><td>—</td><td>Same level as associate eng.; more staff roles</td></tr>
-              </tbody>
-            </table>
-          </div>
-          <p class="subhead">Technicians / Operators</p>
-          <div class="table-wrap">
-            <table class="data-table">
-              <thead><tr><th>Track</th><th>Common title</th><th>Focus</th></tr></thead>
-              <tbody>
-                <tr><td>Manufacturing (largest)</td><td>Manufacturing Technician (12")</td><td>Dispatch monitoring, anomaly coordination, FOUP/materials</td></tr>
-                <tr><td>Advanced packaging</td><td>AP Manufacturing Technician</td><td>Packaging line operation & monitoring</td></tr>
-                <tr><td>Engineering support</td><td>Engineering Technician</td><td>Field / metrology / support for engineering</td></tr>
-                <tr><td>Process module</td><td>Process Technician</td><td>LIT/Etch/CVD/PVD/DIF/EPI/CMP/Metrology/Yield</td></tr>
-                <tr><td>Logistics</td><td>Logistics / AMHS Technician</td><td>Material / AMHS monitoring</td></tr>
-                <tr><td>Q&R</td><td>Reliability / Metrology / SPC / Lab Tech</td><td>Test, metrology, SPC, lab support</td></tr>
-                <tr><td>Data / Systems</td><td>AI/Big Data / System Tech (e.: ADC)</td><td>Systems & data support</td></tr>
-                <tr><td>Facility</td><td>Facility Technician</td><td>Facility system ops / maintenance support</td></tr>
-              </tbody>
-            </table>
-          </div>
-          `
-        }
+        type: "roleList",
+        hint: {
+          zh: "點擊任一職類可展開工作內容介紹。以台積電徵才系統職缺說明為主。",
+          en: "Click a role to expand its job overview. Primarily based on TSMC Careers job postings."
+        },
+        groups: [
+          {
+            heading: { zh: "副工程師／助理工程師", en: "Associate / Assistant Engineers" },
+            roleKey: "associates"
+          },
+          {
+            heading: { zh: "技術員／作業員", en: "Technicians / Operators" },
+            roleKey: "technicians"
+          }
+        ]
       }
     ]
   },
