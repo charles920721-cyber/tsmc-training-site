@@ -3,37 +3,42 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>台積電訓練網站</title>
+  <title>認識台積電｜台積電訓練網站</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Outfit:wght@500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/styles.css" />
 </head>
-<body data-title-key="home.title">
+<body data-title-key="about.title">
   <div class="bg-atmosphere" aria-hidden="true"></div>
 
   <header class="site-header">
     <a class="brand" href="index.html">TSMC Lab</a>
     <nav class="nav">
-      <a href="index.html" class="active" data-i18n="nav.home">首頁</a>
-      <a href="about.html" data-i18n="nav.about">認識台積電</a>
+      <a href="index.html" data-i18n="nav.home">首頁</a>
+      <a href="about.html" class="active" data-i18n="nav.about">認識台積電</a>
       <a href="knowledge.html" data-i18n="nav.knowledge">半導體知識屋</a>
       <a href="quiz.html" data-i18n="nav.quiz">隨機測驗</a>
     </nav>
   </header>
 
-  <main class="hero">
-    <p class="brand-mark">TSMC Lab</p>
-    <h1 data-i18n="home.h1">台積電訓練網站</h1>
-    <p class="hero-lead" data-i18n="home.lead">先認識台積電組織與制度，再複習半導體與光刻教材，並以隨機測驗驗證理解。</p>
-    <div class="hero-actions">
-      <a class="btn btn-primary" href="about.html" data-i18n="home.ctaAbout">認識台積電</a>
-      <a class="btn btn-ghost" href="knowledge.html" data-i18n="home.ctaKnowledge">進入知識屋</a>
-      <a class="btn btn-ghost" href="quiz.html" data-i18n="home.ctaQuiz">開始測驗</a>
+  <main class="page">
+    <div class="page-header">
+      <p class="eyebrow">About TSMC</p>
+      <h1 data-i18n="about.h1">認識台積電</h1>
+      <p data-i18n="about.lead">公司基本資料、職稱職等、加班獎金、內轉制度與 MAE 實務整理。</p>
+    </div>
+
+    <div class="knowledge-layout">
+      <aside class="toc" id="toc"></aside>
+      <div class="knowledge-content" id="about-content"></div>
     </div>
   </main>
 
   <footer class="site-footer"></footer>
+
   <script src="js/i18n.js"></script>
+  <script src="js/about-data.js"></script>
+  <script src="js/about.js"></script>
 </body>
 </html>
