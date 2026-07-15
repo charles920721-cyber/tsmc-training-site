@@ -294,6 +294,20 @@ const ABOUT_CHAPTERS = [
     ]
   },
   {
+    id: "glossary",
+    title: { zh: "常用關鍵字", en: "Workplace Glossary" },
+    articles: [
+      {
+        title: { zh: "員工工作上常用關鍵字（中英／縮寫）", en: "Common Workplace Terms (ZH / EN / Abbr.)" },
+        type: "glossary",
+        hint: {
+          zh: "依主題分類整理廠內常見英文縮寫與中英對照。來源以台積電官網／徵才、設備廠商技術詞彙與產業標準為主；點開各主題即可查看。",
+          en: "Common fab abbreviations with Chinese/English glosses, grouped by theme. Sourced mainly from TSMC Careers/technology pages, equipment-vendor glossaries, and industry standards."
+        }
+      }
+    ]
+  },
+  {
     id: "grades",
     title: { zh: "職等／職稱", en: "Job Grades & Titles" },
     articles: [
