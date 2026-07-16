@@ -8,3 +8,12 @@ Desktop.ini
 
 # Deploy temp
 site.zip
+
+# Node / CMS
+node_modules/
+server/node_modules/
+server/data/*.json
+server/backups/*.zip
+server/credentials/google-service-account.json
+.env
+.DS_Store

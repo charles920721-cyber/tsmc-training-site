@@ -847,3 +847,56 @@ a {
     padding-top: 4.5vh;
   }
 }
+
+.nav-admin:not([hidden]) {
+  color: #c5d0ff;
+}
+
+.gate {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 4rem 6vw;
+  max-width: 720px;
+  margin: 0 auto;
+  animation: rise 0.55s ease both;
+}
+
+.gate-actions,
+.gate-login-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  margin-top: 0.5rem;
+}
+
+.gate-login {
+  display: grid;
+  gap: 0.9rem;
+  margin-top: 1.5rem;
+  max-width: 360px;
+}
+
+.gate-login label {
+  display: grid;
+  gap: 0.35rem;
+  color: var(--muted);
+  font-size: 0.92rem;
+}
+
+.gate-login input {
+  appearance: none;
+  border: 1px solid var(--line);
+  background: rgba(10, 14, 26, 0.65);
+  color: var(--text);
+  border-radius: 10px;
+  padding: 0.7rem 0.85rem;
+  font: inherit;
+}
+
+.gate-error {
+  margin: 0;
+  color: var(--danger);
+  font-size: 0.9rem;
+}

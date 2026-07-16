@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>內容管理後台｜台積電訓練網站</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Outfit:wght@500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/styles.css" />
+  <link rel="stylesheet" href="admin.css" />
+</head>
+<body data-title-key="admin.title">
+  <div class="bg-atmosphere" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <a class="brand" href="../home.html">TSMC Lab</a>
+    <nav class="nav">
+      <a href="../home.html" data-i18n="nav.home">首頁</a>
+      <a href="../about.html" data-i18n="nav.about">認識台積電</a>
+      <a href="../knowledge.html" data-i18n="nav.knowledge">半導體知識屋</a>
+      <a href="../quiz.html" data-i18n="nav.quiz">隨機測驗</a>
+      <a href="index.html" class="active" data-i18n="nav.admin">內容管理</a>
+    </nav>
+  </header>
+
+  <main class="page admin-page">
+    <div class="page-header">
+      <p class="eyebrow">CMS</p>
+      <h1 data-i18n="admin.h1">內容管理後台</h1>
+      <p data-i18n="admin.lead">帳號管理、備份排程與操作紀錄。</p>
+      <div class="admin-toolbar">
+        <span id="admin-user-label"></span>
+        <span id="admin-backend-label" class="admin-chip"></span>
+        <button type="button" class="btn btn-ghost" id="btn-logout" data-i18n="admin.logout">登出</button>
+      </div>
+    </div>
+
+    <div class="admin-tabs" role="tablist">
+      <button type="button" class="chip active" data-tab="accounts" data-i18n="admin.tabAccounts">帳號管理</button>
+      <button type="button" class="chip" data-tab="backup" data-i18n="admin.tabBackup">備份排程</button>
+      <button type="button" class="chip" data-tab="logs" data-i18n="admin.tabLogs">操作紀錄</button>
+    </div>
+
+    <section class="admin-panel" id="panel-accounts">
+      <div class="article">
+        <h3 data-i18n="admin.usersTitle">使用者列表</h3>
+        <div class="table-wrap">
+          <table class="data-table" id="users-table">
+            <thead>
+              <tr>
+                <th data-i18n="admin.colUser">帳號</th>
+                <th data-i18n="admin.colName">顯示名稱</th>
+                <th data-i18n="admin.colRole">角色</th>
+                <th data-i18n="admin.colCreated">建立時間</th>
+                <th data-i18n="admin.colActions">操作</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="article">
+        <h3 data-i18n="admin.addUserTitle">手動新增使用者</h3>
+        <form class="admin-form" id="create-user-form">
+          <label>
+            <span data-i18n="gate.username">帳號</span>
+            <input type="text" name="username" required minlength="3" />
+          </label>
+          <label>
+            <span data-i18n="gate.password">密碼</span>
+            <input type="password" name="password" required minlength="3" />
+          </label>
+          <label>
+            <span data-i18n="admin.displayName">顯示名稱</span>
+            <input type="text" name="displayName" />
+          </label>
+          <label>
+            <span data-i18n="admin.colRole">角色</span>
+            <select name="role">
+              <option value="editor">editor</option>
+              <option value="admin">admin</option>
+            </select>
+          </label>
+          <button type="submit" class="btn btn-primary" data-i18n="admin.addUser">新增帳號</button>
+        </form>
+        <p class="gate-error" id="users-error" hidden></p>
+      </div>
+    </section>
+
+    <section class="admin-panel" id="panel-backup" hidden>
+      <div class="article">
+        <h3 data-i18n="admin.backupTitle">每日自動備份</h3>
+        <p class="role-hint" data-i18n="admin.backupHint">
+          可設定每日自動備份時間。目標資料夾：Google Drive。完整自動上傳需設定服務帳戶金鑰並啟動後端。
+        </p>
+        <p>
+          <a id="drive-folder-link" href="https://drive.google.com/drive/folders/1qNPPihGks7dU-0p6ltMrAarMUXyJTsgy" target="_blank" rel="noopener noreferrer">
+            Google Drive 備份資料夾
+          </a>
+        </p>
+        <form class="admin-form" id="backup-form">
+          <label>
+            <span data-i18n="admin.backupHour">小時（0–23）</span>
+            <input type="number" name="backupHour" min="0" max="23" required />
+          </label>
+          <label>
+            <span data-i18n="admin.backupMinute">分鐘（0–59）</span>
+            <input type="number" name="backupMinute" min="0" max="59" required />
+          </label>
+          <label class="admin-check">
+            <input type="checkbox" name="backupEnabled" />
+            <span data-i18n="admin.backupEnabled">啟用每日自動備份</span>
+          </label>
+          <button type="submit" class="btn btn-primary" data-i18n="admin.saveSchedule">儲存排程</button>
+        </form>
+        <p id="backup-status" class="role-hint"></p>
+        <p class="gate-error" id="backup-error" hidden></p>
+      </div>
+
+      <div class="article">
+        <h3 data-i18n="admin.manualBackupTitle">手動備份</h3>
+        <p class="role-hint" data-i18n="admin.manualBackupHint">
+          立即產生備份。有後端且已設定 Google 憑證時會上傳到指定 Drive 資料夾；否則下載 JSON／ZIP 到本機後可手動放到 Drive。
+        </p>
+        <button type="button" class="btn btn-primary" id="btn-manual-backup" data-i18n="admin.runBackup">立即備份</button>
+        <pre class="admin-pre" id="backup-result" hidden></pre>
+      </div>
+    </section>
+
+    <section class="admin-panel" id="panel-logs" hidden>
+      <div class="article">
+        <h3 data-i18n="admin.logsTitle">操作紀錄</h3>
+        <div class="admin-toolbar">
+          <button type="button" class="btn btn-ghost" id="btn-refresh-logs" data-i18n="admin.refresh">重新整理</button>
+        </div>
+        <div class="table-wrap">
+          <table class="data-table" id="logs-table">
+            <thead>
+              <tr>
+                <th data-i18n="admin.colTime">時間</th>
+                <th data-i18n="admin.colUser">帳號</th>
+                <th data-i18n="admin.colAction">動作</th>
+                <th data-i18n="admin.colDetail">內容</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="../js/auth-client.js"></script>
+  <script src="../js/i18n.js"></script>
+  <script src="admin.js"></script>
+</body>
+</html>
